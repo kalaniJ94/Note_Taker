@@ -24,6 +24,8 @@ const hide = (elem) => {
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
+//GET METHOD. NEED TO MOVE TO SEPARATE PATH FILE (?). POST AND DELETE ARE ALSO HERE.
+//* `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
 
 const getNotes = () =>
   fetch('/api/notes', {
@@ -31,7 +33,14 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+  })
+  .then((response) => response.json())
+  .then((data) => data)
+  .catch((error) => {
+    console.error('Error: ', error);
   });
+//FETCH METHOD
+//* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -40,8 +49,16 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
-
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    alert(data);
+    renderActiveNote(data);
+  })
+  .catch((error) => {
+    console.error('Error: ', error);
+  })
+//COME BACK TO FINISH
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
