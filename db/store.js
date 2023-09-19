@@ -10,13 +10,13 @@ const { v4: uuidv4 } = require('uuid');
 
 
 class Store {
-    read() {
+    read(note) {
         return readFileASync("db/db.json", "utf8")
     }
     write(note) {
         return writeFileASync("db/db.json", JSON.stringify(note))
     }
-    getNotes() {
+    getNotes(note) {
         return this.read().then((notes) => {
             let displayNotes;
             try {
@@ -44,9 +44,9 @@ class Store {
         .then(() => newNote)
     }
 
-    // deleteNote(id){
-
-    // }
+    deleteNote(id){
+        
+    }
 
 }
 

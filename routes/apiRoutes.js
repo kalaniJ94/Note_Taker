@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router();
-// import {router as expressRouter} from 'express';
-// const router = expressRouter();
 const store = require('../db/store');
+const { v4: uuidv4 } = require('uuid');
+
 
 
 //GET api/notes
@@ -15,20 +15,29 @@ router.get('/notes', (req, res) => {
         .catch((err) => res.status(500).json(err))
 });
 
-module.exports = router;
+// //POST
+router.post('/notes', (req, res) => {
+// store.read(note),
+// store.write(note),
+// store.getNotes(note),
+// store.addNote(note)  
 
-// proto.route = function route(path) {
-//     var route = new Route(path);
+
+store.addNote(req.body)
+.then((note) => res.json(note));
+console.log("hello");
+});
+    //Delete  
+  router.delete('/:id', (req, res) => {
+    res.send('Got a DELETE request at /user')
+    if (req.params.id){ 
+      deleteNote(req.params.id);
+      
   
-//     var layer = new Layer(path, {
-//       sensitive: this.caseSensitive,
-//       strict: this.strict,
-//       end: true
-//     }, route.dispatch.bind(route));
-  
-//     layer.route = route;
-  
-//     this.stack.push(layer);
-//     return route;
-//   };
-  
+    }else{
+      res.status(500).json("Provide a Note ID");
+    }
+  })
+
+
+module.exports = router;

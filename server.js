@@ -15,7 +15,7 @@ app.use(express.static('public'));
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
-// //GET route for homepage 
+// // //GET route for homepage 
 // app.get('/', (req, res) => 
 // res.sendFile(path.join(__dirname, 'public/index.html')))
 
