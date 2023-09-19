@@ -44,9 +44,9 @@ class Store {
         .then(() => newNote)
     }
 
-    deleteNote(id){
+    // deleteNote(id){
         
-    }
+    // }
 
 }
 
