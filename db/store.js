@@ -43,11 +43,7 @@ class Store {
         .then((updateNotes) => this.write(updateNotes))
         .then(() => newNote)
     }
+};
 
-    // deleteNote(id){
-        
-    // }
-
-}
 
 module.exports = new Store();
